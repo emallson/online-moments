@@ -1,5 +1,7 @@
 # online-moments
 
+[![Build Status](https://travis-ci.org/emallson/online-moments.svg?branch=master)](https://travis-ci.org/emallson/online-moments)
+
 ## Description
 
 `online-moments` contains an implementation of online moment estimation

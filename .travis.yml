@@ -4,6 +4,8 @@ rust:
   - stable
   - beta
   - nightly
+script:
+  - cargo test --release
 jobs:
   allow_failures:
     - rust: nightly
