@@ -103,19 +103,19 @@ impl<T: FromPrimitive + Float + Copy + std::iter::Sum> MomentEstimator<T> {
     }
 
     pub fn variance(&self) -> Option<T> {
-        self.moment(2).map(|m| m / (self.n() - T::one()))
+        self.moment(2)
     }
 
     pub fn skewness(&self) -> Option<T> {
         self.moment(3).map(|m3| {
             let factor =
                 self.n().powi(2) / ((self.n() - T::one()) * (self.n() - T::from_f64(2.0).unwrap()));
-            factor * (m3 / (self.n() - T::one())) / self.variance().unwrap().sqrt().powi(3)
+            factor * m3 / self.variance().unwrap().sqrt().powi(3)
         })
     }
 
     pub fn moment(&self, ix: usize) -> Option<T> {
-        self.moments.get(ix - 2).map(|m| *m)
+        self.moments.get(ix - 2).map(|m| *m / (self.n() - T::one()))
     }
 }
 
